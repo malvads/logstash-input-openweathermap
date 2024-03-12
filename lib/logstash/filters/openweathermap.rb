@@ -6,10 +6,10 @@ require 'net/http'
 require 'json'
 require 'dalli'
 
-require_relative "util/memcached_config"
-require_relative "util/data_parser"
-require_relative "util/data_cache"
-require_relative "util/data_fetcher"
+require_relative "utils/memcached_config"
+require_relative "utils/data_parser"
+require_relative "utils/data_cache"
+require_relative "utils/data_fetcher"
 
 
 class LogStash::Filters::OpenWeatherMap < LogStash::Filters::Base
@@ -41,7 +41,7 @@ class LogStash::Filters::OpenWeatherMap < LogStash::Filters::Base
       end
     end
 
-    event.set('[weather]', weather_fields) if weather_fields
+    event.update(weather_fields) if weather_fields
 
     filter_matched(event)
   end

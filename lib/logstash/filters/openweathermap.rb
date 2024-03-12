@@ -20,8 +20,6 @@ class LogStash::Filters::OpenWeatherMap < LogStash::Filters::Base
   config :longitude, :validate => :number, :required => true
   config :api_key, :validate => :string, :required => true
 
-  public
-
   def register
     @memcached_servers = @memcached_servers || MemcachedConfig::servers
     @weather_data_fetcher = WeatherDataFetcher.new(@latitude, @longitude, @api_key)
@@ -47,8 +45,6 @@ class LogStash::Filters::OpenWeatherMap < LogStash::Filters::Base
 
     filter_matched(event)
   end
-
-  private
 
   def cache_key
     "#{@latitude}_#{@longitude}"

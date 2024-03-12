@@ -2,10 +2,10 @@ Gem::Specification.new do |s|
   s.name = 'logstash-filter-openweathermap'
   s.version = '0.0.1'
   s.licenses = ['AGPL-3.0']
-  s.summary = "Logstash input plugin to fetch data from openweathermap"
-  s.description = "This plugin allows Logstash to fetch data from OpenWeatherMap."
+  s.summary = "Logstash filter plugin to enrich data with openweathermap"
+  s.description = "This plugin allows Logstash to enrich events with OpenWeatherMap data"
   s.authors = ["Malvads"]
-  s.homepage = "https://github.com/malvads/logstash-input-openweathermap"
+  s.homepage = "https://github.com/malvads/logstash-filter-openweathermap"
   s.require_paths = ["lib"]
 
   # Files

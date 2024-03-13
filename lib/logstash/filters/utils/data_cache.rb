@@ -1,13 +1,28 @@
-class WeatherDataCache
-  def initialize(memcached_servers)
+# frozen_string_literal: true
+
+#
+# Class to manage the generation of the memcached keys
+#
+class CacheGenerator
+  def self.generate_memcached_key(lat, lon)
+    "#{lat}_#{lon}"
+  end
+end
+
+#
+# Class to manage memcached get/set
+#
+class MemcachedManager
+  def initialize(memcached_servers, cache_expiration_seconds)
     @memcached = Dalli::Client.new(memcached_servers)
+    @cache_expiration_seconds = cache_expiration_seconds
   end
 
-  def cache_weather_data(key, weather_data)
-    @memcached.set(key, weather_data)
+  def cache_data(key, data)
+    @memcached.set(key, data, @cache_expiration_seconds)
   end
 
-  def fetch_cached_weather_data(key)
+  def fetch_cached_data(key)
     @memcached.get(key)
   end
 end

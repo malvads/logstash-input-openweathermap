@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'logstash-filter-openweathermap'
-  s.version = '0.0.1'
+  s.version = '0.0.4'
   s.licenses = ['AGPL-3.0']
   s.summary = "Logstash filter plugin to enrich data with openweathermap"
   s.description = "This plugin allows Logstash to enrich events with OpenWeatherMap data"

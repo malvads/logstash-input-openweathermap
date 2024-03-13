@@ -3,7 +3,7 @@
 #
 # Class to manage rbwindow data
 #
-class StoreManager
+class WeatherStoreManager
   def initialize(store, memcached)
     @store = store
     @memcached = memcached

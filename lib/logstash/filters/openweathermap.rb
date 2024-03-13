@@ -22,7 +22,7 @@ module LogStash
     class OpenWeatherMap < LogStash::Filters::Base
       config_name 'openweathermap'
 
-      config :data_store, validate: :string, required: true
+      config :rbwindow_data_store, validate: :string, required: true
       config :cache_expiration_seconds, validate: :number, required: true
       config :api_key, validate: :string, required: true
 
@@ -30,7 +30,7 @@ module LogStash
         @memcached_servers = MemcachedConfig.servers
         @weather_data_fetcher = WeatherDataFetcher.new @api_key
         @memcached_manager = MemcachedManager.new(@memcached_servers, @cache_expiration_seconds)
-        @store = StoreManager.new(@data_store, @memcached_manager)
+        @store = WeatherStoreManager.new(@rbwindow_data_store, @memcached_manager)
         @weather_data_parser = WeatherDataParser.new
       end
 

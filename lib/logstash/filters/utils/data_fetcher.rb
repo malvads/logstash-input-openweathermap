@@ -9,7 +9,7 @@ class WeatherDataFetcher
   end
 
   def fetch_weather_data(lat, lon)
-    url = "https://api.openweathermap.org/data/2.5/weather?lat=#{@lat}&lon=#{@lon}&appid=#{@api_key}"
+    url = "https://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&appid=#{@api_key}"
     uri = URI.parse(url)
     response = Net::HTTP.get_response(uri)
 

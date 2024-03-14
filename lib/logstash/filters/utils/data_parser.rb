@@ -6,13 +6,14 @@
 class WeatherDataParser
   def parse(weather_data)
     @metadata = {}
+    @weather = {}
     @location = weather_data['name']
     @temperature = weather_data.dig('main', 'temp') || 0
     @metadata[:weather_icon] = weather_data.dig('weather', 0, 'icon') || ''
     @metadata[:weather_description] = weather_data.dig('weather', 0, 'description') || ''
-    @wind_speed = weather_data.dig('wind', 'speed') || 0
-    @rain_1h = weather_data.dig('rain', '1h') || 0
-    @snow_1h = weather_data.dig('snow', '1h') || 0
+    @weather[:wind_speed] = weather_data.dig('wind', 'speed') || 0
+    @weather[:rain_1h] = weather_data.dig('rain', '1h') || 0
+    @weather[:snow_1h] = weather_data.dig('snow', '1h') || 0
     create_model
   end
 
@@ -21,9 +22,7 @@ class WeatherDataParser
       @location,
       @temperature,
       @metadata,
-      @wind_speed,
-      @rain_1h,
-      @snow_1h
+      @weather
     ).to_hash
   end
 end

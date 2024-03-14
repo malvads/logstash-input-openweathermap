@@ -13,8 +13,8 @@ class WeatherDataFetcher
     uri = URI.parse(url)
 
     http = Net::HTTP.new(uri.host, uri.port)
-    http.open_timeout = 10
-    http.read_timeout = 10
+    http.use_ssl = (uri.scheme == 'https')
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     response = http.get(uri.request_uri)
     JSON.parse(response.body)

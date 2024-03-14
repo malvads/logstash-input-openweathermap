@@ -11,6 +11,7 @@ require_relative 'utils/data_parser'
 require_relative 'utils/event_manager'
 require_relative 'utils/memcached_config'
 require_relative 'utils/store'
+require_relative 'models/base'
 require_relative 'models/weather'
 
 module LogStash
@@ -26,12 +27,12 @@ module LogStash
       config :api_key, validate: :string, required: true
 
       def register
+        @cache = CacheGenerator.new
         @memcached_servers = MemcachedConfig.servers
+        @weather_data_parser = WeatherDataParser.new
         @weather_data_fetcher = WeatherDataFetcher.new @api_key
         @memcached_manager = MemcachedManager.new(@memcached_servers, @cache_expiration_seconds)
         @store = WeatherStoreManager.new(@rbwindow_data_store, @memcached_manager)
-        @cache = CacheGenerator.new
-        @weather_data_parser = WeatherDataParser.new
       end
 
       def filter(event)

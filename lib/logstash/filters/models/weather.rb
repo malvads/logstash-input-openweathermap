@@ -15,14 +15,6 @@ class Weather
   end
 
   def to_hash
-    {
-      'location' => @location,
-      'temperature' => @temperature,
-      'weather_icon' => @weather_icon,
-      'weather_description' => @weather_description,
-      'wind_speed' => @wind_speed,
-      'rain_1h' => @rain_1h,
-      'snow_1h' => @snow_1h
-    }
+    instance_variables.each_with_object({}) { |var, hash| hash[var.to_s.delete('@')] = instance_variable_get(var) }
   end
 end

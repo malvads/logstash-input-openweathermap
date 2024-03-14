@@ -13,7 +13,6 @@ require_relative 'utils/memcached_config'
 require_relative 'utils/store'
 require_relative 'models/weather'
 
-
 module LogStash
   module Filters
     #

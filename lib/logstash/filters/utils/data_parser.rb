@@ -12,6 +12,7 @@ class WeatherDataParser
     @metadata[:weather_description] = weather_data.dig('weather', 0, 'description') || ''
     @wind_speed = weather_data.dig('wind', 'speed') || 0
     @rain_1h = weather_data.dig('rain', '1h') || 0
+    @snow_1h = weather_data.dig('snow', '1h') || 0
     create_model
   end
 
@@ -21,7 +22,8 @@ class WeatherDataParser
       @temperature,
       @metadata,
       @wind_speed,
-      @rain_1h
+      @rain_1h,
+      @snow_1h
     ).to_hash
   end
 end

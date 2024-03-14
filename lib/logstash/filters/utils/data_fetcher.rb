@@ -11,10 +11,14 @@ class WeatherDataFetcher
   def fetch_weather_data(lat, lon)
     url = "https://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&appid=#{@api_key}"
     uri = URI.parse(url)
-    response = Net::HTTP.get_response(uri)
 
-    return unless response.is_a?(Net::HTTPSuccess)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.open_timeout = 10
+    http.read_timeout = 10
 
+    response = http.get(uri.request_uri)
     JSON.parse(response.body)
+  rescue StandardError
+    {}
   end
 end

@@ -4,7 +4,7 @@
 # Class to manage the generation of the memcached keys
 #
 class CacheGenerator
-  def self.generate_memcached_key(lat, lon)
+  def gen_memcached_key(lat, lon)
     "#{lat}_#{lon}"
   end
 end

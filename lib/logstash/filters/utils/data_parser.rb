@@ -12,6 +12,7 @@ class WeatherDataParser
     @metadata[:weather_icon] = weather_data.dig('weather', 0, 'icon') || ''
     @metadata[:weather_description] = weather_data.dig('weather', 0, 'description') || ''
     @weather[:wind_speed] = weather_data.dig('wind', 'speed') || 0
+    @weather[:wind_deg] = weather_data.dig('wind', 'deg') || 0
     @weather[:rain_1h] = weather_data.dig('rain', '1h') || 0
     @weather[:snow_1h] = weather_data.dig('snow', '1h') || 0
     create_model

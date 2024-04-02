@@ -11,6 +11,7 @@ class Weather < BaseModel
     @weather_icon = metadata[:weather_icon]
     @weather_description = metadata[:weather_description]
     @wind_speed = weather[:wind_speed]
+    @wind_deg = weather[:wind_deg]
     @rain_1h = weather[:rain_1h]
     @snow_1h = weather[:snow_1h]
     kelvin_to_celcius
